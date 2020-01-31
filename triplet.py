@@ -38,7 +38,7 @@ def pusher_construct(train_data, train_label, db_data, db_label, puller_index, n
     return pusher_index
 
 def triplet_construct(train_data, train_label, db_data, db_label, p = 0.5, old_triplet = None):
-    if old_triplet == None:
+    if old_triplet is None:
         puller_index = puller_construct(train_data, train_label, db_data, db_label)
     else:
         puller_index = old_triplet[:,0]
