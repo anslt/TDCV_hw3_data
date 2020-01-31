@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-import numpyt as np
+import numpy as np
 
 def plot_hist(test_predict, db_predict, db_label, iter):
     arg10 = 0
