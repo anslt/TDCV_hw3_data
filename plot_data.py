@@ -38,15 +38,3 @@ def hist_data(test_predict, db_predict, db_label):
 
     return predict_label
 
-def hist_data(test_predict, db_predict, db_label):
-    arg10 = 0
-    arg20 = 0
-    arg40 = 0
-    arg180 = 0
-    predict_label = np.zeros((test_label.shape[0],5))
-    for i in range(test_predict.shape[0]):
-        dist = test_predict[i] - db_predict
-        predict_label[i] = db_label[np.argmin(np.max(dist ** 2,axis=1))]
-
-    return predict_label
-    
