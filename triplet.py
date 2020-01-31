@@ -6,10 +6,8 @@ def puller_construct(train_data, train_label, db_data, db_label,num_of_cl = 5):
     puller_index = np.zeros(N, dtype = int)
     for i in range(num_of_cl):
     ## find the row number of samples with label i in train and database data
-        idx_tr = np.array(np.where(train_label[:,0]==i))
-        idx_tr = idx_tr.reshape(idx_tr.shape[1],)
-        idx_db = np.array(np.where(db_label[:,0]==i))
-        idx_db = idx_db.reshape(idx_db.shape[1],)
+        idx_tr = np.where(train_label[:,0]==i)[0]
+        idx_db = np.where(db_label[:,0]==i)[0]
 
         ## see the distance of any match of database data and training data
         dot_matrix=np.dot(train_label[idx_tr,1:5],db_label[idx_db,1:5].T)
@@ -23,31 +21,33 @@ def pusher_construct(train_data, train_label, db_data, db_label, puller_index, n
     pusher_index = np.zeros([N,2],dtype = int)
     for i in range(num_of_cl):
     ## find the row number of samples with label i in train and database data
-        idx_tr = np.array(np.where(train_label[:,0]==i))
+        idx_tr = np.where(train_label[:,0]==i)[0]
         idx_tr = idx_tr.reshape(idx_tr.shape[1],)
-        idx_db = np.array(np.where(db_label[:,0]==i))
+        idx_db = np.where(db_label[:,0]==i)[0]
         idx_db = idx_db.reshape(idx_db.shape[1],)
-        idnx_db = np.array(np.where(db_label[:,0]!=i))
+        idnx_db = np.where(db_label[:,0]!=i)[0]
         idnx_db = idnx_db.reshape(idnx_db.shape[1],)
 
     #find pusher randomly 
         for j in idx_tr:
             pusher_index[j,0]=np.random.choice(idnx_db,size=1,replace=True,p=None)
-            pusher_index[j,1]=np.random.choice(np.delete(idx_db, np.where(idx_db==puller_index[j])),size=1,replace=True,p=None)
+            pusher_index[j,1]=np.random.choice(np.delete(idx_db, np.where(idx_db==puller_index[j])[0]),size=1,replace=True,p=None)
                    
     return pusher_index
 
 def triplet_construct(train_data, train_label, db_data, db_label, p = 0.5, old_triplet = None):
     if old_triplet is None:
         puller_index = puller_construct(train_data, train_label, db_data, db_label)
+        index = np.arange(train_label.shape[0])
     else:
         puller_index = old_triplet[:,1]
+        index = old_triplet[:,0]
 
     pusher_index = pusher_construct(train_data, train_label, db_data, db_label, puller_index)
     pusher_choice = np.random.binomial(1, p, train_label.shape[0])
     pusher_index = pusher_index[np.arange(train_label.shape[0]),pusher_choice]
     ans = np.zeros((puller_index.shape[0],3), dtype = int)
-    ans[:,0] = np.arange(train_label.shape[0])
+    ans[:,0] = index
     ans[:,1] = puller_index
     ans[:,2] = pusher_index
     return ans
