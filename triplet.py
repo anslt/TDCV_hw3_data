@@ -35,8 +35,9 @@ def pusher_construct(train_data, train_label, db_data, db_label, puller_index, n
                    
     return pusher_index
 
-def triplet_construct(train_data, train_label, db_data, db_label, p = 0.5, old_triplet = None):
-    puller_index = puller_construct(train_data, train_label, db_data, db_label)
+def triplet_construct(train_data, train_label, db_data, db_label, p = 0.5, puller_index = None):
+    if puller_index is None:
+        puller_index = puller_construct(train_data, train_label, db_data, db_label)
     index = np.arange(train_label.shape[0])
 
     pusher_index = pusher_construct(train_data, train_label, db_data, db_label, puller_index)
