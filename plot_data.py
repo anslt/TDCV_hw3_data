@@ -20,7 +20,7 @@ def plot_hist(test_predict, test_label, db_predict, db_label, iter):
                     if arg_dist < 10:
                         arg10 = arg10 + 1
     arg_list = np.array([arg10, arg20, arg40, arg180]) / test_predict.shape[0]
-    print("<10:"+str(arg10) + "<20:" + str(arg20) + "<40:" + str(arg40) + "<180:" + str(arg180))
+    print("<10:"+str(arg10) + ", <20:" + str(arg20) + ", <40:" + str(arg40) + ", <180:" + str(arg180))
     plt.bar(["<10","<20","<40","<180"], arg_list)
     plt.title("iteration:" + str(iter))
     plt.show()
