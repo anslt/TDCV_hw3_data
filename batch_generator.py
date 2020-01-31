@@ -26,14 +26,12 @@ def batch_generator(p,num_per_cl,match_matrix,train_data,train_label,db_data,db_
     batch_X=np.zeros((num_per_cl*15,64,64,3),dtype=np.float32)
     batch_y=np.zeros((num_per_cl*15,5),dtype=np.float32)
 
-    t=0
-    for i in range(0,batch_mm.shape[0]):
-        batch_X[t,:,:,:]=train_data[batch_mm[i,0],:,:,:]
-        batch_X[t+1,:,:,:]=db_data[batch_mm[i,1],:,:,:]
-        batch_X[t+2,:,:,:]=db_data[batch_mm[i,2],:,:,:]
+    batch_X[np.arange(batch_mm.shape[0]) * 3,:,:,:]=train_data[batch_mm[:,0],:,:,:]
+    batch_X[np.arange(batch_mm.shape[0]) * 3 + 1,:,:,:]=db_data[batch_mm[:,1],:,:,:]
+    batch_X[np.arange(batch_mm.shape[0]) * 3 + 2,:,:,:]=db_data[batch_mm[:,2],:,:,:]
 
-        batch_y[t,:]=train_label[batch_mm[i,0],:]
-        batch_y[t+1,:]=db_label[batch_mm[i,1],:]
-        batch_y[t+2,:]=db_label[batch_mm[i,2],:]
-        t=t+3
+    batch_y[np.arange(batch_mm.shape[0]) * 3,:]=train_label[batch_mm[:,0],:]
+    batch_y[np.arange(batch_mm.shape[0]) * 3 + 1,:]=db_label[batch_mm[:,1],:]
+    batch_y[np.arange(batch_mm.shape[0]) * 3 + 2,:]=db_label[batch_mm[:,2],:]
+    
     return batch_X,batch_y
