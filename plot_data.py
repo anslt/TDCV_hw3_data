@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-import numpyt as np
+import numpy as np
 
 def plot_hist(test_predict, db_predict, db_label, iter):
     arg10 = 0
@@ -19,7 +19,7 @@ def plot_hist(test_predict, db_predict, db_label, iter):
                     arg20 = arg20 + 1
                     if arg_dist < 10:
                         arg10 = arg10 + 1
-    arg_list = [arg10, arg20, arg40, arg180]
+    arg_list = np.array([arg10, arg20, arg40, arg180]) / test_predict.shape[0]
     plt.bar(["<10","<20","<40","<180"], arg_list)
     plt.title("iteration:" + str(iter))
     plt.show()
