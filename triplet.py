@@ -47,7 +47,7 @@ def triplet_construct(train_data, train_label, db_data, db_label, p = 0.5, old_t
     pusher_choice = np.random.binomial(1, p, train_label.shape[0])
     pusher_index = pusher_index[np.arange(train_label.shape[0]),pusher_choice]
     ans = np.zeros((puller_index.shape[0],3), dtype = int)
-    ans[:,0] = np.arrange(train_label.shape[0])
+    ans[:,0] = np.arange(train_label.shape[0])
     ans[:,1] = puller_index
     ans[:,2] = pusher_index
     return ans
