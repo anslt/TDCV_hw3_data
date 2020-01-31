@@ -23,4 +23,5 @@ def plot_hist(test_predict, test_label, db_predict, db_label, iter):
     print("<10:"+str(arg10) + ", <20:" + str(arg20) + ", <40:" + str(arg40) + ", <180:" + str(arg180))
     plt.bar(["<10","<20","<40","<180"], arg_list)
     plt.title("iteration:" + str(iter))
+    plt.ylim(0.0, 1.0)
     plt.show()
