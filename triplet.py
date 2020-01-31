@@ -58,12 +58,12 @@ def batch_generator_from_triplet(batch_size, triplet, train_data, train_label, d
     batch_y=np.zeros((batch_size * 3,5),dtype=np.float32)
 
     batch_X[np.arange(batch_size) * 3,:,:,:]=train_data[triplet[:,0],:,:,:]
-    batch_X[np.arange(batch_size) * 3 + 1,:,:,:]=train_data[triplet[:,1],:,:,:]
-    batch_X[np.arange(batch_size) * 3 + 2,:,:,:]=train_data[triplet[:,2],:,:,:]
+    batch_X[np.arange(batch_size) * 3 + 1,:,:,:]=db_data[triplet[:,1],:,:,:]
+    batch_X[np.arange(batch_size) * 3 + 2,:,:,:]=db_data[triplet[:,2],:,:,:]
 
-    batch_y[np.arange(batch_size) * 3 ,:]=train_data[triplet[:,0],:]
-    batch_y[np.arange(batch_size) * 3 + 1,:]=train_data[triplet[:,1],:]
-    batch_y[np.arange(batch_size) * 3 + 2,:]=train_data[triplet[:,2],:]
+    batch_y[np.arange(batch_size) * 3 ,:]=train_label[triplet[:,0],:]
+    batch_y[np.arange(batch_size) * 3 + 1,:]=db_label[triplet[:,1],:]
+    batch_y[np.arange(batch_size) * 3 + 2,:]=db_label[triplet[:,2],:]
 
 
     return batch_X,batch_y
