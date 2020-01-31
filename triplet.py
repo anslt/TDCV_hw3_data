@@ -51,7 +51,7 @@ def triplet_construct(train_data, train_label, db_data, db_label, p = 0.5, old_t
     ans[:,1] = puller_index
     ans[:,2] = pusher_index
     return ans
-
+    
 def batch_generator_from_triplet(batch_size, triplet, train_data, train_label, db_data, db_label):
 
     batch_X=np.zeros(batch_size * 3,64,64,3),dtype=np.float32)
