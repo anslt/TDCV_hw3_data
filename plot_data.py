@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-def plot_hist(test_predict, db_predict, db_label, iter):
+def plot_hist(test_predict, test_label, db_predict, db_label, iter):
     arg10 = 0
     arg20 = 0
     arg40 = 0
