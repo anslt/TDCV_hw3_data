@@ -36,12 +36,8 @@ def pusher_construct(train_data, train_label, db_data, db_label, puller_index, n
     return pusher_index
 
 def triplet_construct(train_data, train_label, db_data, db_label, p = 0.5, old_triplet = None):
-    if old_triplet is None:
-        puller_index = puller_construct(train_data, train_label, db_data, db_label)
-        index = np.arange(train_label.shape[0])
-    else:
-        puller_index = old_triplet[:,1]
-        index = old_triplet[:,0]
+    puller_index = puller_construct(train_data, train_label, db_data, db_label)
+    index = np.arange(train_label.shape[0])
 
     pusher_index = pusher_construct(train_data, train_label, db_data, db_label, puller_index)
     pusher_choice = np.random.binomial(1, p, train_label.shape[0])
