@@ -41,7 +41,7 @@ def triplet_construct(train_data, train_label, db_data, db_label, p = 0.5, old_t
     if old_triplet is None:
         puller_index = puller_construct(train_data, train_label, db_data, db_label)
     else:
-        puller_index = old_triplet[:,0]
+        puller_index = old_triplet[:,1]
 
     pusher_index = pusher_construct(train_data, train_label, db_data, db_label, puller_index)
     pusher_choice = np.random.binomial(1, p, train_label.shape[0])
