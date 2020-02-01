@@ -21,6 +21,8 @@ def plot_hist(test_predict, test_label, db_predict, db_label, iter):
                         arg10 = arg10 + 1
     arg_list = np.array([arg10, arg20, arg40, arg180]) / test_predict.shape[0]
     print("<10:"+str(arg10) + ", <20:" + str(arg20) + ", <40:" + str(arg40) + ", <180:" + str(arg180))
+    print("prcentage:")
+    print("<10:"+str(arg_list[0]) + ", <20:" + str(arg_list[1]) + ", <40:" + str(arg_list[2]) + ", <180:" + str(arg_list[3]))
     plt.bar(["<10","<20","<40","<180"], arg_list)
     plt.title("iteration:" + str(iter))
     plt.ylim(0.0, 1.0)
