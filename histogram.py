@@ -9,7 +9,7 @@ def histogram(model,test_data,test_label,db_data,db_label):
     de_db=model.predict_on_batch(db_data)
     for i in range(0,test_data.shape[0]):
         pre_de=model.predict_on_batch(test_data[i:i+1,:,:,:])
-        idx=np.argmin(np.diag(np.matmul(de_db-pre_de,tf.transpose(de_db-pre_de))))
+        idx=np.argmin(np.diag(np.matmul(de_db-pre_de,np.transpose(de_db-pre_de))))
         pre_label=db_label[idx]
         gt_label=test_label[i]
         if pre_label[0]==gt_label[0]:
