@@ -14,7 +14,7 @@ def histogram(model,test_data,test_label,db_data,db_label):
         gt_label=test_label[i]
         if pre_label[0]==gt_label[0]:
             dot=np.dot(pre_label[1:5],gt_label[1:5].T)
-            angle=math.degrees(2 * np.arccos(np.minimum(np.maximum(dot,-1),1)))
+            angle=math.degrees(2 * np.arccos(abs(np.minimum(np.maximum(dot,-1),1))))
             result[i,0]=1
             result[i,1]=angle
             result[i,2]=idx
