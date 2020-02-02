@@ -12,7 +12,7 @@ def read_data(path,num_of_pic,pic_name,num_of_cl=5,ob_cl=["/ape","/benchvise","/
             imp=path+ob_cl[j]+pic_name+str(i)+".png"
             im=Image.open(imp)
             im_grey=im.convert('L')
-            im_grey=im.thumbnail((32,32))
+            im_grey.thumbnail((32,32))
             data[t,:,:,:]=np.array(im)
             data_grey[t,:,:]=np.array(im_grey)
             t=t+1
