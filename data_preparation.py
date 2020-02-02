@@ -5,13 +5,14 @@ import matplotlib.pyplot as plt
 
 def read_data(path,num_of_pic,pic_name,num_of_cl=5,ob_cl=["/ape","/benchvise","/cam","/cat","/duck"]):
     data=np.zeros((num_of_pic*num_of_cl,64,64,3),dtype=np.float32)
-    data_grey=np.zeros((num_of_pic*num_of_cl,64,64),dtype=np.float32)
+    data_grey=np.zeros((num_of_pic*num_of_cl,32,32),dtype=np.float32)
     t=0
     for j in range(num_of_cl):
         for i in range(num_of_pic):
             imp=path+ob_cl[j]+pic_name+str(i)+".png"
             im=Image.open(imp)
             im_grey=im.convert('L')
+            im_grey=im.thumbnail((32,32))
             data[t,:,:,:]=np.array(im)
             data_grey[t,:,:]=np.array(im_grey)
             t=t+1
