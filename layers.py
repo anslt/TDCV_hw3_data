@@ -41,8 +41,8 @@ conv_2=tf.keras.layers.Conv2D(filters=7,
                        use_bias=True,
                        kernel_initializer='glorot_normal',
                        bias_initializer='Zeros',
+                       dtype=tf.float32,
                        )#kernel_regularizer=tf.keras.regularizers.l2(10e-6),
-                       dtype=tf.float32)
 ## configeration of second convolution layer
 
 
