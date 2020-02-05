@@ -19,24 +19,24 @@ def read_data(path,num_of_pic,pic_name,num_of_cl=5,ob_cl=["/ape","/benchvise","/
     return data, data_grey
 
 
-def norm_data(data):
-    data_n=np.zeros(data.shape,dtype=np.float32)
-    for ch in range(3):
-        for i in range(64):
-            for j in range(64):
-                mean=np.mean(data[:,i,j,ch])
-                std=np.std(data[:,i,j,ch])
-                data_n[:,i,j,ch]=(data[:,i,j,ch]-mean)/(std+1e-10)
-    return data_n
-
 # def norm_data(data):
 #     data_n=np.zeros(data.shape,dtype=np.float32)
 #     for ch in range(3):
-#         for i in range(data.shape[0]):
-#             mean=np.mean(data[i,:,:,ch])
-#             std=np.std(data[i,:,:,ch])
-#             data_n[i,:,:,ch]=(data[i,:,:,ch]-mean)/(std+1e-10)              
-#     return data_n    
+#         for i in range(64):
+#             for j in range(64):
+#                 mean=np.mean(data[:,i,j,ch])
+#                 std=np.std(data[:,i,j,ch])
+#                 data_n[:,i,j,ch]=(data[:,i,j,ch]-mean)/(std+1e-10)
+#     return data_n
+
+def norm_data(data):
+    data_n=np.zeros(data.shape,dtype=np.float32)
+    for ch in range(3):
+        for i in range(data.shape[0]):
+            mean=np.mean(data[i,:,:,ch])
+            std=np.std(data[i,:,:,ch])
+            data_n[i,:,:,ch]=(data[i,:,:,ch]-mean)/(std+1e-10)              
+    return data_n    
 
 
 def read_label(path,num_of_la,num_of_cl=5):
