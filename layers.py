@@ -17,7 +17,7 @@ conv_1=tf.keras.layers.Conv2D(filters=16,
                        bias_initializer='Zeros',
                        dtype=tf.float32,
                        input_shape=(64,64,3),
-                       kernel_regularizer=tf.keras.regularizers.l2(10e-6))
+                       kernel_regularizer=tf.keras.regularizers.l2(10e-9))
 ## configeration of first convolution layer
 
 
@@ -42,7 +42,7 @@ conv_2=tf.keras.layers.Conv2D(filters=7,
                        kernel_initializer='glorot_normal',
                        bias_initializer='Zeros',
                        dtype=tf.float32,
-                       kernel_regularizer=tf.keras.regularizers.l2(10e-6))
+                       kernel_regularizer=tf.keras.regularizers.l2(10e-9))
 ## configeration of second convolution layer
 
 
@@ -67,7 +67,7 @@ fc_1=tf.keras.layers.Dense(256,
                       use_bias=True,
                       kernel_initializer='glorot_normal',
                       bias_initializer='Zeros',
-                      kernel_regularizer=tf.keras.regularizers.l2(10e-6))
+                      kernel_regularizer=tf.keras.regularizers.l2(10e-9))
 ## configeration of first full connected layer
 
 
@@ -77,7 +77,7 @@ fc_2=tf.keras.layers.Dense(16,
                       use_bias=True,
                       kernel_initializer='glorot_normal',
                       bias_initializer='Zeros',
-                      kernel_regularizer=tf.keras.regularizers.l2(10e-6))
+                      kernel_regularizer=tf.keras.regularizers.l2(10e-9))
 ## configeration of second full connected layer
 
 
